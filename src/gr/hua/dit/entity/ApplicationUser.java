@@ -1,5 +1,7 @@
 package gr.hua.dit.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class ApplicationUser implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +32,9 @@ public class Employee {
 	@Column(name = "rights")
 	private int rights;
 	
-	public Employee() {}
+	public ApplicationUser() {}
 	
-	public Employee(String username, String password, int rights) {
+	public ApplicationUser(String username, String password, int rights) {
 		this.username = username;
 		this.password = password;
 		this.rights = rights;
