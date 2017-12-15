@@ -1,12 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+
+<div class="ui segment">
+
+
+
+<form name="findUserForm" method="post" action="findId">
+
+<br><br>
+Enter ID to find user<br>
+<input type="text" name="id"><br>
+<input type="submit" value="Find">
+</form>
+<form name="modifyUserForm" method="post" action="saveModifiedUser">
+Username <input type="text" name="username" value="${username}"><br>
+Password <input type="text" name="password" value="${password}"><br>
+Rights <input type="number" name="rights" value="${rights}"><br>
+<input type="submit" value="Save Changes">
+</form>
+<c:if test="${not empty message}">
+<div style="color:green">${message}</div><br>
+</c:if>
+
+</div>

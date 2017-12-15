@@ -12,6 +12,7 @@
                 http://www.springframework.org/schema/tx
                 http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- Add support for component scanning -->
 	<context:component-scan base-package="gr.hua.dit" />
 
@@ -28,11 +29,10 @@
 	<!-- Step 1: Define Database DataSource / connection pool -->
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:mysql://83.212.105.20/it21444?useSSL=false" />
-		<property name="user" value="it21444" />
-		<property name="password" value="mysqlpasswd" />
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.pass}" />
 
 		<!-- these are connection pool properties for C3P0 -->
 		<property name="initialPoolSize" value="5" />
@@ -50,6 +50,9 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.CharSet">utf8</prop>
+				<prop key="hibernate.connection.characterEncoding">utf8</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
 			</props>
 		</property>
 	</bean>

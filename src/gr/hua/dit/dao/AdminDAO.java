@@ -1,9 +1,13 @@
 package gr.hua.dit.dao;
 
-import javax.servlet.http.HttpServletRequest;
+import gr.hua.dit.entity.ApplicationUser;
 
 public interface AdminDAO {
-	public void createUser(HttpServletRequest request);
-	public void deleteUser(HttpServletRequest request);
-	public void modifyUser(HttpServletRequest request);
+	public void createUser(ApplicationUser appUser);
+
+	public void deleteUser(int id);
+
+	public void modifyUser(int id);
+
+	public ApplicationUser getUser(int id);
 }

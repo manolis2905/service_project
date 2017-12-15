@@ -1,26 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Create New User</title>
-</head>
-<body>
-<h2>New User Information</h2>
-<form name="createUserForm" method="post" action="saveNewUser">
-Username : 
-<input type="text" name="username"><br>
-Password : 
-<input type="password" name="password"><br>
-Position : 
-<input type="text" name="position"><br>
-<input type="submit" value="Create User">
-</form>
-<button type="button"><a href="${pageContext.request.contextPath}/user/admin/administrator">Back</a></button>
-<c:if test="${not empty message}">
-<div style="color:green">${message}</div><br>
-</c:if>
-</body>
-</html>
+
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+<div class="ui segment">
+
+	<h3>New User Information</h3>
+
+
+	<form:form action="saveNewUser" modelAttribute="appUser" method="POST"
+		class="ui form">
+		<div class="field">
+			<label>Username</label>
+			<form:input path="username" />
+		</div>
+		<div class="field">
+			<label>Password</label>
+			<form:input path="password" />
+		</div>
+		<div class="number">
+			<label>Position</label>
+			<form:input path="rights" />
+		</div>
+		<button class="ui button" type="submit">Create User</button>
+	</form:form>
+	<a href="${pageContext.request.contextPath}/admin/administrator"><button class="ui button"
+			type="button">Back</button></a>
+
+</div>

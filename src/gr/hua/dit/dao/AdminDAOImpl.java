@@ -1,14 +1,11 @@
 package gr.hua.dit.dao;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gr.hua.dit.entity.Employee;
+import gr.hua.dit.entity.ApplicationUser;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -18,33 +15,49 @@ public class AdminDAOImpl implements AdminDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
-	public void createUser(HttpServletRequest request) {
+	public void createUser(ApplicationUser appUser) {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// create new employee
-		Employee newEmployee = new Employee(request.getParameter("username"), request.getParameter("password"),
-				Integer.valueOf(request.getParameter("position")));
-
-		// save new employee
-		currentSession.save(newEmployee);
+		// save the application user
+		currentSession.save(appUser);
 	}
 
 	@Override
-	public void deleteUser(HttpServletRequest request) {
+	public void deleteUser(int id) {
+
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// delete employee
-		currentSession.delete(request.getParameter("id"));
+		// find the application user
+		ApplicationUser appUser = currentSession.get(ApplicationUser.class, id);
+
+		// delete application user
+		currentSession.delete(appUser);
 
 	}
 
 	@Override
-	public void modifyUser(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+	public void modifyUser(int id) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		// find the application user
+		ApplicationUser appUser = currentSession.get(ApplicationUser.class, id);
 
+		// modify application user
+		currentSession.update(appUser);
+
+	}
+
+	@Override
+	public ApplicationUser getUser(int id) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		// get and return ApplicationUser
+		ApplicationUser appUser = currentSession.get(ApplicationUser.class, id);
+		return appUser;
 	}
 
 }

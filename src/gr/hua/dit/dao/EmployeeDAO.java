@@ -1,11 +1,9 @@
 package gr.hua.dit.dao;
 
-import java.util.List;
-
-import gr.hua.dit.entity.Employee;
+import javax.servlet.http.HttpServletRequest;
 
 public interface EmployeeDAO {
 
-	public List<Employee> getEmployees();
+	public void insertNewCustomer(HttpServletRequest request);
 	
 }
